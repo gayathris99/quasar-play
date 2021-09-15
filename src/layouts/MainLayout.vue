@@ -37,17 +37,14 @@ export default {
  },
  methods:{
    loginUserPage(){
-    //  console.log(this.loginForm.email)
-    //  console.log(this.loginForm.password)
+    
      signInWithEmailAndPassword(firebaseAuth,this.loginForm.email, this.loginForm.password)
      .then(response => {
-      //  console.log(response)
        this.$router.push('/welcome')
 
 
       })
      .catch ( error => {
-      //  console.log(error.message)
        this.error = true
      })
    }

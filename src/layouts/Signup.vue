@@ -40,10 +40,9 @@ export default {
  },
  methods:{
     registerUser(){
-     console.log(this.registerForm)
+     
      createUserWithEmailAndPassword(firebaseAuth,this.registerForm.email, this.registerForm.password)
      .then(response => {
-       console.log(response)
        let userID = response.user.uid
        const docRef = setDoc(doc(firebaseDb, "users", userID), {
          firstName: this.registerForm.firstName,
@@ -52,12 +51,11 @@ export default {
          phone: this.registerForm.phone,
          
        });
-      console.log("Document written with ID: ", docRef)
+      
        this.$router.push('/welcome')
       })
      .catch ( error => {
-       console.log(error.message)
-       this.error = true
+        this.error = true
      })
   }
  }
