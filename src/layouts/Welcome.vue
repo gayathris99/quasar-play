@@ -19,17 +19,14 @@ export default {
     created() {
        onAuthStateChanged(firebaseAuth, (user) => {
            if (user) {
-               console.log("user",user.uid)
-            //    this.user = user
                const docRef = doc(firebaseDb, "users", user.uid);
                console.log("docref", docRef)
                   getDoc(docRef).then(doc => {
-                      console.log("doc", doc.data())
                       this.user = doc.data()
                   })
            }
            else {
-               console.log("Nope")
+               console.log("Not logged in")
            }
        }) 
     }
