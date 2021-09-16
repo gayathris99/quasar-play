@@ -15,6 +15,11 @@ const routes = [
     component: () => import('layouts/Welcome.vue')
   },
 
+  {
+    path: '/editprofile',
+    component: () => import('layouts/EditProfile.vue')
+  },
+
   // Always leave this as last one,
   // but you can also remove it
   {
