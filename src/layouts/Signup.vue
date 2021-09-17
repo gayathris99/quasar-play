@@ -22,10 +22,7 @@
 
 
 <script>
-import {firebaseAuth,firebaseDb} from 'src/boot/firebase'
-import {createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc, setDoc, doc } from "firebase/firestore"; 
-
+import {mapActions} from 'vuex';
 export default {
  data() {
    return {
@@ -39,24 +36,9 @@ export default {
    }
  },
  methods:{
+   ...mapActions('user',['signupUser']),
     registerUser(){
-     
-     createUserWithEmailAndPassword(firebaseAuth,this.registerForm.email, this.registerForm.password)
-     .then(response => {
-       let userID = response.user.uid
-       const docRef = setDoc(doc(firebaseDb, "users", userID), {
-         firstName: this.registerForm.firstName,
-         lastName: this.registerForm.lastName,
-         email: this.registerForm.email,
-         phone: this.registerForm.phone,
-         
-       });
-      
-       this.$router.push('/welcome')
-      })
-     .catch ( error => {
-        this.error = true
-     })
+     this.signupUser(this.registerForm)
   }
  }
 }
